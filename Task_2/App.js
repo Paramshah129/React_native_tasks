@@ -3,6 +3,7 @@ import {UserProvider} from './context/UserContext';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {Ionicons} from '@expo/vector-icons';
 
 import SignupScreen from './screens/SignupScreen';
 import LoginScreen from './screens/LoginScreen';
@@ -15,7 +16,25 @@ const Tab=createBottomTabNavigator();
 
 function HomeTabs(){
   return (
-    <Tab.Navigator>
+    <Tab.Navigator
+        screenOptions={({route}) => ({
+        tabBarIcon:({focused,color,size}) => {
+          let iconName;
+
+          if (route.name==='Home') {
+            iconName = focused ?'home':'home-outline';
+          } 
+          else if (route.name==='Profile') {
+            iconName = focused ?'person':'person-outline';
+          } 
+          else if (route.name==='EditProfile') {
+            iconName = focused ?'pencil':'pencil-outline';
+          }
+
+          return <Ionicons name={iconName} size={size} color={color}/>;
+        },
+      })}
+    >
       <Tab.Screen name="Home" component={HomeScreen}/>
       <Tab.Screen name="Profile" component={ProfileScreen}/>
       <Tab.Screen name="EditProfile" component={EditProfileScreen}/>

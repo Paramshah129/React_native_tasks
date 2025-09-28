@@ -47,7 +47,7 @@ export default function EditProfileScreen({navigation}){
             <Image source={{uri:profilePic}} style={styles.profileImage}/>
           ):(
             <View style={styles.placeholder}>
-              <Text style={{ color: "#B0FFB0" }}>Pick Image</Text>
+              <Text style={{color:"#B0FFB0"}}>Pick Image</Text>
             </View>
           )}
         </TouchableOpacity>
