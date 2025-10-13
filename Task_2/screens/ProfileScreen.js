@@ -22,6 +22,7 @@ export default function ProfileScreen({navigation}) {
         )}
         <Text style={styles.name}>{user.name}</Text>
         <Text style={styles.email}>{user.email}</Text>
+        <Text style={styles.email}>{user.contactNo}</Text>
 
         <TouchableOpacity style={styles.button} onPress={() => navigation.navigate("EditProfile")}>
           <LinearGradient

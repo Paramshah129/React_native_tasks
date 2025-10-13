@@ -4,12 +4,14 @@ import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {Ionicons} from '@expo/vector-icons';
+import {FavoritesProvider} from './context/FavoritesContext';
 
 import SignupScreen from './screens/SignupScreen';
 import LoginScreen from './screens/LoginScreen';
 import HomeScreen from './screens/HomeScreen';
 import ProfileScreen from './screens/ProfileScreen';
 import EditProfileScreen from './screens/EditProfileScreen';
+import FavoritesScreen from './screens/FavoritesScreen';
 
 const Stack=createStackNavigator();
 const Tab=createBottomTabNavigator();
@@ -30,12 +32,16 @@ function HomeTabs(){
           else if (route.name==='EditProfile') {
             iconName = focused ?'pencil':'pencil-outline';
           }
+          else if (route.name==='Favorites') {
+            iconName = focused ?'heart':'heart-outline';
+          }
 
           return <Ionicons name={iconName} size={size} color={color}/>;
         },
       })}
     >
       <Tab.Screen name="Home" component={HomeScreen}/>
+      <Tab.Screen name="Favorites" component={FavoritesScreen}/>
       <Tab.Screen name="Profile" component={ProfileScreen}/>
       <Tab.Screen name="EditProfile" component={EditProfileScreen}/>
     </Tab.Navigator>
@@ -45,13 +51,15 @@ function HomeTabs(){
 export default function App(){
   return(
     <UserProvider>
-      <NavigationContainer>
-        <Stack.Navigator initialRouteName="Signup">
-          <Stack.Screen name="Signup" component={SignupScreen}/>
-          <Stack.Screen name="Login" component={LoginScreen}/>
-          <Stack.Screen name="HomeTabs" component={HomeTabs} options={{headerShown:false}}/>
-        </Stack.Navigator>
-      </NavigationContainer>
+      <FavoritesProvider>
+        <NavigationContainer>
+          <Stack.Navigator initialRouteName="Signup">
+            <Stack.Screen name="Signup" component={SignupScreen}/>
+            <Stack.Screen name="Login" component={LoginScreen}/>
+            <Stack.Screen name="HomeTabs" component={HomeTabs} options={{headerShown:false}}/>
+          </Stack.Navigator>
+        </NavigationContainer>
+      </FavoritesProvider>
     </UserProvider>
   );
 }

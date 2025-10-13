@@ -8,6 +8,8 @@ export default function EditProfileScreen({navigation}){
   const {user,updateProfile} = useContext(UserContext);
   const [name,setName] = useState(user.name);
   const [profilePic,setProfilePic] = useState(user.profilePic);
+  const [email,setEmail] = useState(user.email);
+  const [contactNo,setContactNo] = useState(user.contactNo);
 
   const pickImage = async() => {
     const permission = await ImagePicker.requestMediaLibraryPermissionsAsync();
@@ -34,7 +36,7 @@ export default function EditProfileScreen({navigation}){
       return;
     }
 
-    updateProfile({name,profilePic});
+    updateProfile({name,profilePic,email,contactNo});
 
     navigation.goBack();
   };
@@ -53,6 +55,8 @@ export default function EditProfileScreen({navigation}){
         </TouchableOpacity>
 
         <TextInput value={name} placeholder="Enter Name" placeholderTextColor="#B0FFB0" style={styles.input} onChangeText={setName}/>
+        <TextInput value={email} placeholder="Enter Email" placeholderTextColor="#B0FFB0" style={styles.input} onChangeText={setEmail}/>
+        <TextInput value={contactNo} placeholder="Enter Contact Number" placeholderTextColor="#B0FFB0" style={styles.input} onChangeText={setContactNo}/>
 
         <TouchableOpacity style={styles.button} onPress={handleSave}>
           <LinearGradient
