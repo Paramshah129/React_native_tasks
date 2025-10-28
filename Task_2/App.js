@@ -12,6 +12,7 @@ import HomeScreen from './screens/HomeScreen';
 import ProfileScreen from './screens/ProfileScreen';
 import EditProfileScreen from './screens/EditProfileScreen';
 import FavoritesScreen from './screens/FavoritesScreen';
+import ChatBotScreen from './screens/ChatBotScreen';
 
 const Stack=createStackNavigator();
 const Tab=createBottomTabNavigator();
@@ -35,6 +36,9 @@ function HomeTabs(){
           else if (route.name==='Favorites') {
             iconName = focused ?'heart':'heart-outline';
           }
+          else if (route.name==='ChatBot') {
+            iconName = focused ?'chatbubble':'chatbubble-outline';
+          }
 
           return <Ionicons name={iconName} size={size} color={color}/>;
         },
@@ -42,6 +46,7 @@ function HomeTabs(){
     >
       <Tab.Screen name="Home" component={HomeScreen}/>
       <Tab.Screen name="Favorites" component={FavoritesScreen}/>
+      <Tab.Screen name="ChatBot" component={ChatBotScreen}/>
       <Tab.Screen name="Profile" component={ProfileScreen}/>
       <Tab.Screen name="EditProfile" component={EditProfileScreen}/>
     </Tab.Navigator>
